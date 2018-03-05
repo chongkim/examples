@@ -17,3 +17,15 @@ rebase() {
   git rebase other_branch
   git push -f
 }
+
+cherry_pick() {
+  git cherry-pick other_branch   # => only get last commit from other_branch
+  git cherry-pick ..other_branch # => gets all commits from other branch
+  git cherry-pick ...other_branch
+  git cherry-pick other_branch...
+
+  git cherry-pick 23185eb e321960 4a794cf # pick up all three
+
+  git cherry-pick 23185eb..4a794cf # pick up except for first
+  git cherry-pick 23185eb...4a794cf # pick up except for first
+}

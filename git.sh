@@ -29,3 +29,13 @@ cherry_pick() {
   git cherry-pick 23185eb..4a794cf # pick up except for first
   git cherry-pick 23185eb...4a794cf # pick up except for first
 }
+
+bisect() {
+  git bisect start
+  git bisect bad # mark current version as bad
+  git bisect good develop # mark this as good, will automatically checkout middle commit
+
+  git bisect good # or bad continue checking out the middle commit
+
+  git bisect reset # done
+}

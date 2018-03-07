@@ -6,7 +6,8 @@
 #     python -m unittest python
 #     python -m unittest python.MockTest
 # """
-from unittest import TestCase
+import re
+from unittest import TestCase, main
 from unittest.mock import Mock
 
 
@@ -22,6 +23,21 @@ class MockTest(TestCase):
 
 class ReTest(TestCase):
     def test_split(self):
-        import re
         lst = re.split(r'-', 'a-b--c')
         self.assertEqual(lst, ['a', 'b', '', 'c'])
+
+    def test_dotall(self):
+        s = 'hello\nthere'
+        self.assertFalse(re.match('hello.there', s))
+        self.assertTrue(re.match('hello.there', s, re.DOTALL))
+
+    def test_findall(self):
+        s = '<a>foo</a>\n  xx <a>bar</a>'
+        self.assertEqual(
+            re.findall(r'<a>.*?</a>', s, re.DOTALL),
+            ['<a>foo</a>', '<a>bar</a>']
+        )
+
+
+if __name__ == '__main__':
+    main()

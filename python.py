@@ -33,10 +33,15 @@ class ReTest(TestCase):
 
     def test_findall(self):
         s = '<a>foo</a>\n  xx <a>bar</a>'
-        self.assertEqual(
-            re.findall(r'<a>.*?</a>', s, re.DOTALL),
-            ['<a>foo</a>', '<a>bar</a>']
-        )
+        self.assertEqual(re.findall(r'<a>.*?</a>', s, re.DOTALL), ['<a>foo</a>', '<a>bar</a>'])
+
+    def test_capturing_group(self):
+        s = '<a>foo</a>\n  xx <a>bar</a>'
+        self.assertEqual(re.findall(r'<a>(.*?)</a>', s, re.DOTALL), ['foo', 'bar'])
+
+    def test_noncapturing_group(self):
+        s = '<a>foo</a>\n  xx <a>bar</a>'
+        self.assertEqual(re.findall(r'<a>(?:.*?)</a>', s, re.DOTALL), ['<a>foo</a>', '<a>bar</a>'])
 
 
 if __name__ == '__main__':

@@ -7,6 +7,10 @@ put_existing_repository_to_github() {
   git push -u origin master
 }
 
+delete_remote_branch() {
+  git push -d origin branchname
+}
+
 global_config() {
   git config --global alias.co checkout
   git co master  # will do `git checkout master`

@@ -43,3 +43,11 @@ bisect() {
 
   git bisect reset # done
 }
+
+rename_branch() {
+  git branch -m new-name
+  git branch -m old-name new-name
+
+  git push origin :old-name new-name
+  git push origin -u new-name
+}

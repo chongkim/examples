@@ -11,6 +11,10 @@ delete_remote_branch() {
   git push -d origin branchname
 }
 
+delete_remote_branch_old_method() {
+  git push origin :branchname
+}
+
 global_config() {
   git config --global alias.co checkout
   git co master  # will do `git checkout master`

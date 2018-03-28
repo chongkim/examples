@@ -29,5 +29,5 @@ echo substitute('foo(x) bar(x2)', '(.\{-\})', '-', '')
 
 function! Foo(param1, ...)
   let num_args = a:0
-  let optional_arg = (num_args >= 2) ? 1 : 0
+  let optional_arg = (num_args >= 2) ? a:2: 0
 endfunction

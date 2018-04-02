@@ -12,3 +12,9 @@ select concat('foo', 'bar');
 
 select 'foo'||'bar'
 --> foobar
+
+-- UPDATE joining with a table
+update mytable as m
+set price = o.price
+from other_table as o
+where m.other_table_id = o.id

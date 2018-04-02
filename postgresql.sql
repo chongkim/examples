@@ -18,3 +18,6 @@ update mytable as m
 set price = o.price
 from other_table as o
 where m.other_table_id = o.id
+
+-- if you cancel the query you're currenting writing by using \r
+selexxt sflajs fadjs f\r

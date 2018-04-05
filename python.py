@@ -44,5 +44,11 @@ class ReTest(TestCase):
         self.assertEqual(re.findall(r'<a>(?:.*?)</a>', s, re.DOTALL), ['<a>foo</a>', '<a>bar</a>'])
 
 
+class OsTest(TestCase):
+    def test_dir_exists(self):
+        import os
+        self.assertFalse(os.path.exists('/this-does-not-exists'))
+
+
 if __name__ == '__main__':
     main()

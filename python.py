@@ -7,7 +7,7 @@
 #     python -m unittest python.MockTest
 # """
 import re
-from unittest import TestCase, main
+from unittest import TestCase
 from unittest.mock import Mock
 
 
@@ -50,5 +50,7 @@ class OsTest(TestCase):
         self.assertFalse(os.path.exists('/this-does-not-exists'))
 
 
-if __name__ == '__main__':
-    main()
+# read file line by line
+with open("file.txt", "r") as f:
+    for line in f:
+        pass

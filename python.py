@@ -7,6 +7,7 @@
 #     python -m unittest python.MockTest
 # """
 import re
+import sys
 from unittest import TestCase
 from unittest.mock import Mock
 
@@ -48,6 +49,11 @@ class OsTest(TestCase):
     def test_dir_exists(self):
         import os
         self.assertFalse(os.path.exists('/this-does-not-exists'))
+
+
+# print args
+for arg in sys.argv:
+    print(arg)
 
 
 # read file line by line

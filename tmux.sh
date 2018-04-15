@@ -16,3 +16,9 @@ multiple_users() {
   tmux -S /tmp/socketname a -t session_name
   tmux -S /tmp/socketname a -t session_name -r  # if you want be read-only
 }
+
+set_term_env() {
+  cat >> ~/.tmux.conf<<END
+set -g default-terminal "xterm-256color"
+END
+

@@ -43,6 +43,9 @@ class ReTest(TestCase):
         s = '<a>foo</a>\n  xx <a>bar</a>'
         self.assertEqual(re.findall(r'<a>(?:.*?)</a>', s, re.DOTALL), ['<a>foo</a>', '<a>bar</a>'])
 
+    def test_sub_with_function(self):
+        self.assertEqual(re.sub(r' +', lambda x: str(len(x.group(0))), 'r  n'), 'r2n')
+
 
 if __name__ == '__main__':
     main()

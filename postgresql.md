@@ -1,3 +1,4 @@
+```sql
 select * from pg_stat_activity;
 
 select pg_cancel_backend(__pid__);
@@ -21,3 +22,8 @@ where m.other_table_id = o.id
 
 -- if you cancel the query you're currenting writing by using \r
 selexxt sflajs fadjs f\r
+
+-- Upgrade to latest postgis
+alter extension PostGIS upgrade;
+```
+

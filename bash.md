@@ -1,12 +1,17 @@
+```bash
 tput civis  # makes the cursor invisible
 tput cnorm  # makes the cursor visible again
+```
 
-ag --ignore dirname pattern
-
+```bash
 ctags -R --exclude=pattern .
+```
 
+```bash
 ssh-keygen -R "hostname"  # removes hostname from ~/.ssh/known_hosts
+```
 
+```bash
 change_hostname() {
   sudo -s
   vi /etc/hostname  # replace line with the hostname you want (ie: staging)
@@ -14,3 +19,4 @@ change_hostname() {
   hostname staging
   exit  # don't need to be superuser anymore
 }
+```

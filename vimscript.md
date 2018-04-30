@@ -1,3 +1,4 @@
+```vimscript
 " This is a comment
 echo 'foo' | " nned to start a new command to  inline comment otherwise it thinks it's a string
 echo "foo" | " You can run it as :echo 'foo'
@@ -31,3 +32,4 @@ function! Foo(param1, ...)
   let num_args = a:0
   let optional_arg = (num_args >= 2) ? a:2: 0
 endfunction
+```

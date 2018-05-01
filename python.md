@@ -60,4 +60,7 @@ from importlib import reload
 reload(mymodule)
 ```
 
-
+```python
+# zerofill a number as string
+assert str(12).zfill(3) == "012"
+```

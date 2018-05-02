@@ -1,66 +1,70 @@
 ## Strings
 ```sql
-        select substring('abcde' from 2 for 3);
+        SELECT SUBSTRING('abcde' FROM 2 FOR 3);
         --> 'bcd'
+```
+## Dates
+```sql
+        SELECT TO_CHAR(NOW(), 'YYYY-MM');
+        --> '2018-05'
 ```
 ## System
 ```sql
-        select * from pg_stat_activity;
-
-        select pg_cancel_backend(__pid__);
-
+        -- get a list of queries
+        SELECT pid, query FROM pg_stat_activity;
         -- list those commands from psql
-        select * from pg_stat_activity where application_name='psql';
+        SELECT pid, query FROM pg_stat_activity WHERE application_name='psql';
 
-        select pg_terminate_backend(__pid__);  -- be careful with this one
+        SELECT pg_cancel_backend(1208);
+        SELECT pg_terminate_backend(1208);  -- be careful with this one
 
-        select concat('foo', 'bar');
-        --> foobar
+        SELECT CONCAT('foo', 'bar');
+        --> 'foobar'
 
-        select 'foo'||'bar'
-        --> foobar
+        SELECT 'foo'||'bar'
+        --> 'foobar'
 
         -- UPDATE joining with a table
-        update mytable as m
-        set price = o.price
-        from other_table as o
-        where m.other_table_id = o.id
+        UPDATE mytable AS m
+        SET price = o.price
+        FROM other_table AS o
+        WHERE m.other_table_id = o.id
 
         -- if you cancel the query you're currenting writing by using \r
         selexxt sflajs fadjs f\r
 
         -- Upgrade to latest postgis
-        alter extension PostGIS upgrade;
+        ALTER EXTENSION PostGIS UPGRADE;
 ```
-## size of databases
+size of databases
 ```sql
-        SELECT
-            pg_database.datname,
-            pg_size_pretty(pg_database_size(pg_database.datname)) AS size
-            FROM pg_database;
+        SELECT  pg_database.datname,
+                pg_size_pretty(pg_database_size(pg_database.datname)) AS size
+        FROM pg_database;
 ```
-## size of tables
+size of tables
 ```sql
-        SELECT relname as "Table",
-                pg_size_pretty(pg_total_relation_size(relid)) As "Size",
-                pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) as "External Size"
+        SELECT  relname AS "Table",
+                pg_size_pretty(pg_total_relation_size(relid)) AS "Size",
+                pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) AS "External Size"
         FROM pg_catalog.pg_statio_user_tables
         ORDER BY pg_total_relation_size(relid) DESC;
 ```
-## copy table like another
+copy table like another
 ```sql
         CREATE TABLE mytable (LIKE othertable INCLUDING DEFAULTS INCLUDING CONTRAINTS);
 ```
+## Partitions
 create parition table
 ```sql
         CREATE TABLE mytable (id INT, account_id INT) PARTITION BY RANGE(account_id);
 ```
-## adding/removing partitions
+adding/removing partitions
 ```sql
         ALTER TABLE mytable ATTACH PARTITION mytable_y2006m08 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01');
         ALTER TABLE mytable DETACH PARTITION mytable_y2006m08;
 ```
-## creating partition manually
+creating partition manually
 ```sql
         CREATE TABLE measurement_y2008m02
           (LIKE measurement INCLUDING DEFAULTS INCLUDING CONSTRAINTS)
@@ -77,9 +81,4 @@ create parition table
 
         ALTER TABLE measurement ATTACH PARTITION measurement_y2008m02
             FOR VALUES FROM ('2008-02-01') TO ('2008-03-01' );
-```
-Date conversion
----------------
-```sql
-        select to_char(now(), 'YYYY-MM');
 ```

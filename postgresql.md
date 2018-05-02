@@ -26,11 +26,6 @@
         -- Upgrade to latest postgis
         alter extension PostGIS upgrade;
 ```
-## data partitions
-```sql
-        ALTER TABLE mytable ATTACH PARTITION mytable_y2006m08 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01');
-        ALTER TABLE mytable DETACH PARTITION mytable_y2006m08;
-```
 ## size of databases
 ```sql
         SELECT
@@ -49,6 +44,15 @@
 ## copy table like another
 ```sql
         CREATE TABLE mytable (LIKE othertable INCLUDING DEFAULTS INCLUDING CONTRAINTS);
+```
+create parition table
+```sql
+        CREATE TABLE mytable (id INT, account_id INT) PARTITION BY RANGE(account_id);
+```
+## adding/removing partitions
+```sql
+        ALTER TABLE mytable ATTACH PARTITION mytable_y2006m08 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01');
+        ALTER TABLE mytable DETACH PARTITION mytable_y2006m08;
 ```
 ## creating partition manually
 ```sql

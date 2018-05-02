@@ -82,3 +82,15 @@ creating partition manually
         ALTER TABLE measurement ATTACH PARTITION measurement_y2008m02
             FOR VALUES FROM ('2008-02-01') TO ('2008-03-01' );
 ```
+create a sequence
+```sql
+        CREATE SEQUENCE my_seq
+                START WITH 1
+                INCREMENT BY 1
+                NO MINVALUE
+                NO MAXVALUE
+                CACHE 1;
+        CREATE TABLE foo(id integer DEFAULT nextval('my_seq') NOT NULL)
+        PARTITION BY RANGE (id);
+        ALTER SEQUENCE my_seq OWNED BY foo.id;
+```

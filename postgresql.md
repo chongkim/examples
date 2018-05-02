@@ -6,7 +6,7 @@ select pg_cancel_backend(__pid__);
 -- list those commands from psql
 select * from pg_stat_activity where application_name='psql';
 
-select pg_terminate_backend(__pid__);
+select pg_terminate_backend(__pid__);  -- be careful with this one
 
 select concat('foo', 'bar');
 --> foobar
@@ -45,11 +45,11 @@ SELECT
 ## size of tables
 
 ```sql
-SELECT
-    relname as "Table",
-    pg_size_pretty(pg_total_relation_size(relid)) As "Size",
-    pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) as "External Size"
-    FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC;
+SELECT relname as "Table",
+        pg_size_pretty(pg_total_relation_size(relid)) As "Size",
+        pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) as "External Size"
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC;
 ```
 
 ## copy table like another

@@ -1,3 +1,9 @@
+## Strings
+```sql
+        select substring('abcde' from 2 for 3);
+        --> 'bcd'
+```
+## System
 ```sql
         select * from pg_stat_activity;
 

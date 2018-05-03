@@ -55,12 +55,14 @@ copy table like another
         CREATE TABLE mytable (LIKE othertable INCLUDING DEFAULTS INCLUDING CONTRAINTS);
 ```
 ## Partitions
-create parition table
 ```sql
+        -- create parition table
         CREATE TABLE mytable (id INT, account_id INT) PARTITION BY RANGE(account_id);
-```
-adding/removing partitions
-```sql
+
+        -- create a subtable
+        CREATE TABLE mypart PARTITION OF MASTER FOR VALUES FROM (1) TO (100);
+
+        -- adding/removing partitions
         ALTER TABLE mytable ATTACH PARTITION mytable_y2006m08 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01');
         ALTER TABLE mytable DETACH PARTITION mytable_y2006m08;
 ```

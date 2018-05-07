@@ -1,12 +1,38 @@
+## Basic SQL
+```sql
+        -- UPDATE joining with a table
+        UPDATE mytable AS m
+        SET price = o.price
+        FROM other_table AS o
+        WHERE m.other_table_id = o.id
+
+        -- UPDATE joi
+
+        -- if you cancel the query you're currenting writing by using \r
+        selexxt sflajs fadjs f\r
+
+        -- copy table like another
+        CREATE TABLE mytable (LIKE othertable INCLUDING DEFAULTS INCLUDING CONTRAINTS);
+```
 ## Strings
 ```sql
         SELECT SUBSTRING('abcde' FROM 2 FOR 3);
         --> 'bcd'
+
+        SELECT CONCAT('foo', 'bar');
+        --> 'foobar'
+
+        SELECT 'foo'||'bar'
+        --> 'foobar'
 ```
 ## Dates
 ```sql
         SELECT TO_CHAR(NOW(), 'YYYY-MM');
         --> '2018-05'
+```
+## Math
+```sql
+        select 5 % 2;  -- modulo
 ```
 ## System
 ```sql
@@ -18,41 +44,26 @@
         SELECT pg_cancel_backend(1208);
         SELECT pg_terminate_backend(1208);  -- be careful with this one
 
-        SELECT CONCAT('foo', 'bar');
-        --> 'foobar'
-
-        SELECT 'foo'||'bar'
-        --> 'foobar'
-
-        -- UPDATE joining with a table
-        UPDATE mytable AS m
-        SET price = o.price
-        FROM other_table AS o
-        WHERE m.other_table_id = o.id
-
-        -- if you cancel the query you're currenting writing by using \r
-        selexxt sflajs fadjs f\r
-
         -- Upgrade to latest postgis
         ALTER EXTENSION PostGIS UPGRADE;
-```
-size of databases
-```sql
+
+        -- list installed extensions
+        \dx
+
+        -- list all extensions
+        select pg_available_extensions();
+
+        -- size of databases
         SELECT  pg_database.datname,
                 pg_size_pretty(pg_database_size(pg_database.datname)) AS size
         FROM pg_database;
-```
-size of tables
-```sql
+
+        -- size of tables
         SELECT  relname AS "Table",
                 pg_size_pretty(pg_total_relation_size(relid)) AS "Size",
                 pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) AS "External Size"
         FROM pg_catalog.pg_statio_user_tables
         ORDER BY pg_total_relation_size(relid) DESC;
-```
-copy table like another
-```sql
-        CREATE TABLE mytable (LIKE othertable INCLUDING DEFAULTS INCLUDING CONTRAINTS);
 ```
 ## Partitions
 ```sql
@@ -65,9 +76,8 @@ copy table like another
         -- adding/removing partitions
         ALTER TABLE mytable ATTACH PARTITION mytable_y2006m08 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01');
         ALTER TABLE mytable DETACH PARTITION mytable_y2006m08;
-```
-creating partition manually
-```sql
+
+        -- creating partition manually
         CREATE TABLE measurement_y2008m02
           (LIKE measurement INCLUDING DEFAULTS INCLUDING CONSTRAINTS)
           TABLESPACE fasttablespace;
@@ -83,9 +93,8 @@ creating partition manually
 
         ALTER TABLE measurement ATTACH PARTITION measurement_y2008m02
             FOR VALUES FROM ('2008-02-01') TO ('2008-03-01' );
-```
-create a sequence
-```sql
+
+        -- create a sequence
         CREATE SEQUENCE my_seq
                 START WITH 1
                 INCREMENT BY 1
@@ -95,8 +104,4 @@ create a sequence
         CREATE TABLE foo(id integer DEFAULT nextval('my_seq') NOT NULL)
         PARTITION BY RANGE (id);
         ALTER SEQUENCE my_seq OWNED BY foo.id;
-```
-Math
-```sql
-        select 5 % 2;  -- modulo
 ```

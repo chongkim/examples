@@ -96,3 +96,7 @@ create a sequence
         PARTITION BY RANGE (id);
         ALTER SEQUENCE my_seq OWNED BY foo.id;
 ```
+Math
+```sql
+        select 5 % 2;  -- modulo
+```

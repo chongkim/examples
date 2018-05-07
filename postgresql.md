@@ -4,9 +4,15 @@
         UPDATE mytable AS m
         SET price = o.price
         FROM other_table AS o
-        WHERE m.other_table_id = o.id
+        WHERE m.other_table_id = o.id;
 
-        -- UPDATE joi
+        -- UPDATE join with multiple tables
+        UPDATE mytable AS m
+        SET price = o.price
+        FROM other_table AS o,
+             third_table as t
+        WHERE m.other_table_id = o.id,
+              t.id = o.t_id;
 
         -- if you cancel the query you're currenting writing by using \r
         selexxt sflajs fadjs f\r

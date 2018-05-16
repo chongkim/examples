@@ -20,3 +20,15 @@ change_hostname() {
   exit  # don't need to be superuser anymore
 }
 ```
+
+```bash
+filename = 'foo.tar.gz'
+echo ${filename##*.}  # removes everything (greedy) before the .
+# => 'gz'
+echo ${filename#.}  # removes everything (shortest) before the .
+# => 'tar.gz'
+echo ${filename%.*}
+# => 'foo.tar'
+echo ${filename%%.*}
+# => 'foo'
+```

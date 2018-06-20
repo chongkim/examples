@@ -14,7 +14,7 @@
         WHERE m.other_table_id = o.id,
               t.id = o.t_id;
 
-        -- if you cancel the query you're currenting writing by using \r
+        -- you cancel the query you're currenting writing by using \r
         selexxt sflajs fadjs f\r
 
         -- copy table like another

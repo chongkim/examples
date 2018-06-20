@@ -16,3 +16,13 @@ with connection.cursor() as cursor():
         for row in cursor.fetchall():
             pass
 ```
+
+Turn on debugging in the console:
+
+```
+import logging
+
+logger = logging.getLogger('dbjango.db.backends')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(Logging.StreamHandler())
+```

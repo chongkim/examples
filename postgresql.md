@@ -71,6 +71,14 @@
         FROM pg_catalog.pg_statio_user_tables
         ORDER BY pg_total_relation_size(relid) DESC;
 ```
+## Variables
+```sql
+        \set myvar 12
+        select :myvar;
+        select * from accounts where id = :myvar;
+        \unset myvar
+        \set   -- lists all variables
+```
 ## Partitions
 ```sql
         -- create parition table

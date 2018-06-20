@@ -78,6 +78,11 @@
         select * from accounts where id = :myvar;
         \unset myvar
         \set   -- lists all variables
+
+        select id, name from accounts limit 1 \gset
+        -- now you have :id and :name set to those values
+        select id, name from accounts limit 1 \gset my_
+        -- now you have :my_id set to id and :my_name set to name
 ```
 ## Partitions
 ```sql

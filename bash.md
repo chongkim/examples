@@ -12,6 +12,10 @@ ssh-keygen -R "hostname"  # removes hostname from ~/.ssh/known_hosts
 ```
 
 ```bash
+ssh-copy-id hostname
+```
+
+```bash
 change_hostname() {
   sudo -s
   vi /etc/hostname  # replace line with the hostname you want (ie: staging)

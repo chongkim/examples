@@ -56,4 +56,8 @@ rename_branch() {
   git push origin :old-name new-name
   git push origin -u new-name
 }
+
+common_ancestor() {
+  git merge-base branch1 branch2
+}
 ```

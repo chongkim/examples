@@ -1,3 +1,4 @@
+```vim
 " This is a comment
 echo 'foo' | " nned to start a new command to  inline comment otherwise it thinks it's a string
 echo "foo" | " You can run it as :echo 'foo'
@@ -26,3 +27,9 @@ echo substitute('foo(x) bar(x2)', '(.*)', '-', '')
 " .{-} minimal expansion
 echo substitute('foo(x) bar(x2)', '(.\{-\})', '-', '')
 "=> foo- bar(x2)
+
+function! Foo(param1, ...)
+  let num_args = a:0
+  let optional_arg = (num_args >= 2) ? a:2: 0
+endfunction
+``

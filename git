@@ -1,3 +1,4 @@
+```bash
 put_existing_repository_to_github() {
   # Create the repository on github without adding files (e.g. README)
   git init
@@ -55,3 +56,8 @@ rename_branch() {
   git push origin :old-name new-name
   git push origin -u new-name
 }
+
+common_ancestor() {
+  git merge-base branch1 branch2
+}
+```

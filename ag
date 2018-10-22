@@ -1,4 +1,6 @@
+```bash
 tree
+
 #=>
 # .
 # ├── a
@@ -7,10 +9,17 @@ tree
 # └── b
 #     ├── first.txt
 #     └── second.txt
+```
 
+```bash
 ag 'pattern' -G first
 # a/first.txt
 # 1:one
 #
 # b/first.txt
 # 1:one
+```
+
+```bash
+ag --ignore dirname pattern
+```

@@ -1,24 +1,31 @@
-starting_tmux() {
+Starting tmux
+```bash
   tmux
+  # or
   tmux new -s session_name
-}
+```
 
-connecting_to_session() {
+Connecting to session
+```bash
   tmux attach
+  # or
   tmux a
+  # or
   tmux a -t session_name
-}
+```
 
-multiple_users() {
+Multiple users
+```bash
   tmux -S /tmp/socketname new -s sessions_name
   chmod o+rwx /tmp/socketname
 
   tmux -S /tmp/socketname a -t session_name
   tmux -S /tmp/socketname a -t session_name -r  # if you want be read-only
-}
+```
 
-set_term_env() {
+Set the terminal environment
+```
   cat >> ~/.tmux.conf<<END
 set -g default-terminal "xterm-256color"
 END
-
+```

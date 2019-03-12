@@ -19,3 +19,8 @@ show where the option is set
 ```
         :verbose set tw?
 ```
+
+set different diff algorithm
+```
+:set diffopt=algorithm:patience
+```
